@@ -15,18 +15,15 @@ namespace Price_Calculator_Kata
             newProduct.Discount = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Please Enter the UPC thar you want to make discount for:");
-            int x = int.Parse(Console.ReadLine());
+            int UPC = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Please Enter the UPC discount percentage:");
-            double y = Convert.ToDouble(Console.ReadLine());
-            if (newProduct.UPC == x)
-            {
-                newProduct.UPCDiscount = y;
-            }
+            double UPCdiscount = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine($"Product new price is {newProduct.NewPrice}$");
-            Console.WriteLine($"The amount of discount is {newProduct.DiscountAmount+newProduct.UPCDiscountAmount}$");
-            
+            newProduct.SetUPCDiscount(UPC, UPCdiscount);
+           
+            Console.WriteLine($"Product new price is {newProduct.CalculateNewPrice()}$");
+            Console.WriteLine($"The amount of discount is {newProduct.CalculateTotalDiscount()}$");
         }
     }
 }

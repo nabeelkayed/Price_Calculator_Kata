@@ -8,38 +8,38 @@ namespace Price_Calculator_Kata
         public int UPC { set; get; }
         public double Price { set; get; }
         public double Tax { set; get; }
-        public double UPCDiscount { get; set; }
         public double Discount { get; set; }
+        public double UPCDiscount { get; set; }
 
-
-        public double TaxAmount
+        public void SetUPCDiscount(int UPC, double UPCDiscount)
         {
-            get
+            if (this.UPC == UPC)
             {
-                return Math.Round(Price * Tax / 100, 2);
+                this.UPCDiscount = UPCDiscount;
             }
         }
-        public double NewPrice
+        private double CalculateDiscountAmount(double price)
         {
-            get
-            {
-                return Math.Round(Price + TaxAmount - DiscountAmount - UPCDiscountAmount, 2);
-            }
+            return Math.Round(price * Discount / 100, 2);
         }
-        public double DiscountAmount
+        private double CalculateUPCDiscountAmount(double price)
         {
-            get
-            {
-                return Math.Round(Price * Discount / 100, 2);
-            }
+            return Math.Round(price * UPCDiscount / 100, 2);
         }
-
-        public double UPCDiscountAmount
+        private double CalculateTaxAmount(double price)
         {
-            get
-            {
-                return Math.Round(Price * UPCDiscount / 100, 2);
-            }
+            return Math.Round(price * Tax / 100, 2);
+        }
+        public double CalculateNewPrice()
+        {
+            double price = Price - CalculateUPCDiscountAmount(Price);
+            return Math.Round(price + CalculateTaxAmount(price) - CalculateDiscountAmount(price), 2);
+        }
+        public double CalculateTotalDiscount()
+        {
+            double UPCDiscountAmount = CalculateUPCDiscountAmount(Price);
+            double price = Price - UPCDiscountAmount;
+            return Math.Round(UPCDiscountAmount + CalculateDiscountAmount(price), 2);
         }
 
         public Product(string Name, int UPC, double Price)
