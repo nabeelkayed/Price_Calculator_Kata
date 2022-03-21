@@ -11,16 +11,22 @@ namespace Price_Calculator_Kata
             Console.WriteLine("Please Enter the tax percentage:");
             newProduct.Tax = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Please Enter the discount percentage:");
+            Console.WriteLine("Please Enter the universal discount percentage:");
             newProduct.Discount = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine($"Product new price is {newProduct.NewPrice}$");
-            if (newProduct.Discount != 0)
+            Console.WriteLine("Please Enter the UPC thar you want to make discount for:");
+            int x = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please Enter the UPC discount percentage:");
+            double y = Convert.ToDouble(Console.ReadLine());
+            if (newProduct.UPC == x)
             {
-                Console.WriteLine($"The amount of discount is {newProduct.DiscountAmount}$");
+                newProduct.UPCDiscount = y;
             }
 
-            //Console.WriteLine($"Product price reported as {newProduct.Price} before tax and discount and {newProduct.NewPrice} after {newProduct.Tax}% tax and {newProduct.Discount}% discount");
+            Console.WriteLine($"Product new price is {newProduct.NewPrice}$");
+            Console.WriteLine($"The amount of discount is {newProduct.DiscountAmount+newProduct.UPCDiscountAmount}$");
+            
         }
     }
 }
