@@ -21,9 +21,20 @@ namespace Price_Calculator_Kata
             double UPCdiscount = Convert.ToDouble(Console.ReadLine());
 
             newProduct.SetUPCDiscount(UPC, UPCdiscount);
-           
-            Console.WriteLine($"Product new price is {newProduct.CalculateNewPrice()}$");
-            Console.WriteLine($"The amount of discount is {newProduct.CalculateTotalDiscount()}$");
+
+            Console.WriteLine("Please Enter the packaging cost:");
+            newProduct.PackagingCost = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Please Enter the transport cost:");
+            newProduct.TransportCost = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine($"Cost = {newProduct.Price}$");
+            Console.WriteLine($"Tax = {newProduct.CalculateTaxAmount(newProduct.Price)}$");
+            Console.WriteLine($"Discounts = {newProduct.CalculateTotalDiscount()}$");
+            Console.WriteLine($"Packaging = {newProduct.CalculatePackagingCost()}$");
+            Console.WriteLine($"Transport = {newProduct.TransportCost}$");
+            Console.WriteLine($"TOTAL = {newProduct.CalculateNewPrice()}$");
+
         }
     }
 }

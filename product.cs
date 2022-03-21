@@ -10,6 +10,8 @@ namespace Price_Calculator_Kata
         public double Tax { set; get; }
         public double Discount { get; set; }
         public double UPCDiscount { get; set; }
+        public double PackagingCost { get; set; }
+        public double TransportCost { get; set; }
 
         public void SetUPCDiscount(int UPC, double UPCDiscount)
         {
@@ -18,28 +20,32 @@ namespace Price_Calculator_Kata
                 this.UPCDiscount = UPCDiscount;
             }
         }
-        private double CalculateDiscountAmount(double price)
+        public double CalculateDiscountAmount(double price)
         {
             return Math.Round(price * Discount / 100, 2);
         }
-        private double CalculateUPCDiscountAmount(double price)
+        public double CalculateUPCDiscountAmount(double price)
         {
             return Math.Round(price * UPCDiscount / 100, 2);
         }
-        private double CalculateTaxAmount(double price)
+        public double CalculateTaxAmount(double price)
         {
             return Math.Round(price * Tax / 100, 2);
         }
         public double CalculateNewPrice()
         {
-            double price = Price - CalculateUPCDiscountAmount(Price);
-            return Math.Round(price + CalculateTaxAmount(price) - CalculateDiscountAmount(price), 2);
+            return Math.Round(Price +TransportCost + CalculatePackagingCost() - CalculateUPCDiscountAmount(Price) + CalculateTaxAmount(Price) - CalculateDiscountAmount(Price), 2);
+            
         }
         public double CalculateTotalDiscount()
         {
-            double UPCDiscountAmount = CalculateUPCDiscountAmount(Price);
-            double price = Price - UPCDiscountAmount;
-            return Math.Round(UPCDiscountAmount + CalculateDiscountAmount(price), 2);
+          
+            return Math.Round(CalculateUPCDiscountAmount(Price) + CalculateDiscountAmount(Price), 2);
+        }
+
+        public double CalculatePackagingCost()
+        {
+            return Math.Round(Price * PackagingCost / 100, 2);
         }
 
         public Product(string Name, int UPC, double Price)
