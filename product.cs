@@ -12,11 +12,10 @@ namespace Price_Calculator_Kata
         {
             set
             {
-
             }
             get
             {
-                return Price * Tax / 100;
+                return Math.Round(Price * Tax / 100, 2);
             }
         }
         public double NewPrice
@@ -31,11 +30,10 @@ namespace Price_Calculator_Kata
         {
             set
             {
-
             }
             get
             {
-                return Price * Discount / 100;
+                return Math.Round(Price * Discount / 100, 2);
             }
         }
 
@@ -45,7 +43,7 @@ namespace Price_Calculator_Kata
             this.UPC = UPC;
             this.Price = Price;
             Tax = 20;
+            Discount = 0;
         }
-
     }
 }
