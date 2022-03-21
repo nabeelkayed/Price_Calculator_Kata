@@ -1,0 +1,11 @@
+C:\Users\hp\source\repos\Price Calculator Kata\bin\Debug\netcoreapp2.1\Price Calculator Kata.deps.json
+C:\Users\hp\source\repos\Price Calculator Kata\bin\Debug\netcoreapp2.1\Price Calculator Kata.runtimeconfig.json
+C:\Users\hp\source\repos\Price Calculator Kata\bin\Debug\netcoreapp2.1\Price Calculator Kata.runtimeconfig.dev.json
+C:\Users\hp\source\repos\Price Calculator Kata\bin\Debug\netcoreapp2.1\Price Calculator Kata.dll
+C:\Users\hp\source\repos\Price Calculator Kata\bin\Debug\netcoreapp2.1\Price Calculator Kata.pdb
+C:\Users\hp\source\repos\Price Calculator Kata\obj\Debug\netcoreapp2.1\Price Calculator Kata.csprojAssemblyReference.cache
+C:\Users\hp\source\repos\Price Calculator Kata\obj\Debug\netcoreapp2.1\Price Calculator Kata.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\Price Calculator Kata\obj\Debug\netcoreapp2.1\Price Calculator Kata.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\Price Calculator Kata\obj\Debug\netcoreapp2.1\Price Calculator Kata.AssemblyInfo.cs
+C:\Users\hp\source\repos\Price Calculator Kata\obj\Debug\netcoreapp2.1\Price Calculator Kata.dll
+C:\Users\hp\source\repos\Price Calculator Kata\obj\Debug\netcoreapp2.1\Price Calculator Kata.pdb
