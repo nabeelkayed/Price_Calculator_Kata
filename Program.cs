@@ -10,9 +10,11 @@ namespace Price_Calculator_Kata
 
             Console.WriteLine("Please Enter the tax percentage:");
             newProduct.Tax = Convert.ToDouble(Console.ReadLine());
-            newProduct.UpdatePriceAfterNewTax();
 
-            Console.WriteLine($"Product price reported as {newProduct.Price} before tax and {newProduct.PriceAfterTax} after {newProduct.Tax}% tax");
+            Console.WriteLine("Please Enter the discount percentage:");
+            newProduct.Discount = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine($"Product price reported as {newProduct.Price} before tax and discount and {newProduct.NewPrice} after {newProduct.Tax}% tax and {newProduct.Discount}% discount");
         }
     }
 }
