@@ -15,7 +15,7 @@ namespace Price_Calculator_Kata
         public string DicountType { get; set; }
         public double Cap { get; set; }
         public string CapType { get;  set; }
-
+        public string Currency { get; internal set; }
 
         public void SetUPCDiscount(int UPC, double UPCDiscount)
         {

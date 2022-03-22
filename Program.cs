@@ -37,12 +37,15 @@ namespace Price_Calculator_Kata
             Console.WriteLine("Please Enter 1 if you want the cap as persentage and 2 if you want the cap absolute amount:");
             newProduct.CapType = Console.ReadLine();
 
-            Console.WriteLine($"Cost = {newProduct.Price}$");
-            Console.WriteLine($"Tax = {newProduct.CalculateTaxAmount(newProduct.Price)}$");
-            Console.WriteLine($"Discounts = {newProduct.CalculateTotalDiscount()}$");
-            Console.WriteLine($"Packaging = {newProduct.CalculatePackagingCost()}$");
-            Console.WriteLine($"Transport = {newProduct.TransportCost}$");
-            Console.WriteLine($"TOTAL = {newProduct.CalculateNewPrice()}$");
+            Console.WriteLine("Please Enter the Currency:");
+            newProduct.Currency = Console.ReadLine();
+
+            Console.WriteLine($"Cost = {newProduct.Price} {newProduct.Currency}");
+            Console.WriteLine($"Tax = {newProduct.CalculateTaxAmount(newProduct.Price)} {newProduct.Currency}");
+            Console.WriteLine($"Discounts = {newProduct.CalculateTotalDiscount()} {newProduct.Currency}");
+            Console.WriteLine($"Packaging = {newProduct.CalculatePackagingCost()} {newProduct.Currency}");
+            Console.WriteLine($"Transport = {newProduct.TransportCost} {newProduct.Currency}");
+            Console.WriteLine($"TOTAL = {newProduct.CalculateNewPrice()} {newProduct.Currency}");
 
         }
     }
