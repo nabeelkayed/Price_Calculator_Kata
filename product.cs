@@ -12,6 +12,7 @@ namespace Price_Calculator_Kata
         public double UPCDiscount { get; set; }
         public double PackagingCost { get; set; }
         public double TransportCost { get; set; }
+        public string DicountType { get; set; }
 
         public void SetUPCDiscount(int UPC, double UPCDiscount)
         {
@@ -34,13 +35,39 @@ namespace Price_Calculator_Kata
         }
         public double CalculateNewPrice()
         {
-            return Math.Round(Price +TransportCost + CalculatePackagingCost() - CalculateUPCDiscountAmount(Price) + CalculateTaxAmount(Price) - CalculateDiscountAmount(Price), 2);
-            
+            if (this.DicountType == "additive")
+            {
+                return Math.Round(Price + TransportCost + CalculatePackagingCost() - CalculateUPCDiscountAmount(Price) + CalculateTaxAmount(Price) - CalculateDiscountAmount(Price), 2);
+
+            }
+            else if (this.DicountType == "multiplicative")
+            {
+                double price = Price - CalculateDiscountAmount(Price);
+                return Math.Round(price + TransportCost + CalculatePackagingCost() - CalculateUPCDiscountAmount(price) + CalculateTaxAmount(Price) , 2);
+            }
+            else
+            {
+                return 0;
+            }
+
         }
         public double CalculateTotalDiscount()
         {
-          
-            return Math.Round(CalculateUPCDiscountAmount(Price) + CalculateDiscountAmount(Price), 2);
+            if (this.DicountType == "additive")
+            {
+                return Math.Round(CalculateUPCDiscountAmount(Price) + CalculateDiscountAmount(Price), 2);
+
+            }
+            else if (this.DicountType == "multiplicative")
+            {
+                double price = Price - CalculateDiscountAmount(Price);
+                return Math.Round(CalculateUPCDiscountAmount(price) + CalculateDiscountAmount(Price), 2);
+            }
+            else
+            {
+                return 0;
+            }
+
         }
 
         public double CalculatePackagingCost()
@@ -56,6 +83,8 @@ namespace Price_Calculator_Kata
             Tax = 20;
             Discount = 0;
             UPCDiscount = 0;
+            PackagingCost = 0;
+            TransportCost = 0;
         }
     }
 }
