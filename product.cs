@@ -13,6 +13,9 @@ namespace Price_Calculator_Kata
         public double PackagingCost { get; set; }
         public double TransportCost { get; set; }
         public string DicountType { get; set; }
+        public double Cap { get; set; }
+        public string CapType { get;  set; }
+
 
         public void SetUPCDiscount(int UPC, double UPCDiscount)
         {
@@ -35,33 +38,37 @@ namespace Price_Calculator_Kata
         }
         public double CalculateNewPrice()
         {
-            if (this.DicountType == "additive")
-            {
-                return Math.Round(Price + TransportCost + CalculatePackagingCost() - CalculateUPCDiscountAmount(Price) + CalculateTaxAmount(Price) - CalculateDiscountAmount(Price), 2);
-
-            }
-            else if (this.DicountType == "multiplicative")
-            {
-                double price = Price - CalculateDiscountAmount(Price);
-                return Math.Round(price + TransportCost + CalculatePackagingCost() - CalculateUPCDiscountAmount(price) + CalculateTaxAmount(Price) , 2);
-            }
-            else
-            {
-                return 0;
-            }
-
+            return Math.Round(Price + TransportCost + CalculatePackagingCost() + CalculateTaxAmount(Price) - CalculateTotalDiscount(), 2);
         }
         public double CalculateTotalDiscount()
         {
-            if (this.DicountType == "additive")
+            double cap = CalculateCap();
+
+            if (this.DicountType == "1")
             {
-                return Math.Round(CalculateUPCDiscountAmount(Price) + CalculateDiscountAmount(Price), 2);
+                double discount = Math.Round(CalculateUPCDiscountAmount(Price) + CalculateDiscountAmount(Price), 2);
+                if (discount < cap)
+                {
+                    return discount;
+                }
+                else
+                {
+                    return cap;
+                }
 
             }
-            else if (this.DicountType == "multiplicative")
+            else if (this.DicountType == "2")
             {
                 double price = Price - CalculateDiscountAmount(Price);
-                return Math.Round(CalculateUPCDiscountAmount(price) + CalculateDiscountAmount(Price), 2);
+                double discount = Math.Round(CalculateUPCDiscountAmount(price) + CalculateDiscountAmount(Price), 2);
+                if (discount <cap)
+                {
+                    return discount;
+                }
+                else
+                {
+                    return cap;
+                }
             }
             else
             {
@@ -73,6 +80,18 @@ namespace Price_Calculator_Kata
         public double CalculatePackagingCost()
         {
             return Math.Round(Price * PackagingCost / 100, 2);
+        }
+        public double CalculateCap()
+        {
+            if (CapType == "1")
+            {
+                return Math.Round(Price * Cap / 100, 2);
+
+            }
+            else
+            {
+                return Cap;
+            }
         }
 
         public Product(string Name, int UPC, double Price)

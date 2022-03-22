@@ -23,21 +23,19 @@ namespace Price_Calculator_Kata
             newProduct.SetUPCDiscount(UPC, UPCdiscount);
 
             Console.WriteLine("Please Enter 1 if you want additive discount and 2 if you want multiplicative discount:");
-            string dicounttype = Console.ReadLine();
-            if (dicounttype == "1")
-            {
-                newProduct.DicountType = "additive";
-            }
-            else if(dicounttype == "2")
-            {
-                newProduct.DicountType = "multiplicative";
-            }
+            newProduct.DicountType = Console.ReadLine();
 
             Console.WriteLine("Please Enter the packaging cost:");
             newProduct.PackagingCost = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Please Enter the transport cost:");
             newProduct.TransportCost = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Please Enter the cap:");
+            newProduct.Cap = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Please Enter 1 if you want the cap as persentage and 2 if you want the cap absolute amount:");
+            newProduct.CapType = Console.ReadLine();
 
             Console.WriteLine($"Cost = {newProduct.Price}$");
             Console.WriteLine($"Tax = {newProduct.CalculateTaxAmount(newProduct.Price)}$");
