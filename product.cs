@@ -14,8 +14,10 @@ namespace Price_Calculator_Kata
         public double TransportCost { get; set; }
         public string DicountType { get; set; }
         public double Cap { get; set; }
-        public string CapType { get;  set; }
-        public string Currency { get; internal set; }
+        public string CapType { get; set; }
+        public string Currency { get; set; }
+        public string TransportType { get; set; }
+        public string PackagingType { get; set; }
 
         public void SetUPCDiscount(int UPC, double UPCDiscount)
         {
@@ -26,11 +28,11 @@ namespace Price_Calculator_Kata
         }
         public double CalculateDiscountAmount(double price)
         {
-            return Math.Round(price * Discount / 100, 2);
+            return Math.Round(price * Discount / 100, 4);
         }
         public double CalculateUPCDiscountAmount(double price)
         {
-            return Math.Round(price * UPCDiscount / 100, 2);
+            return Math.Round(price * UPCDiscount / 100, 4);
         }
         public double CalculateTaxAmount(double price)
         {
@@ -38,7 +40,7 @@ namespace Price_Calculator_Kata
         }
         public double CalculateNewPrice()
         {
-            return Math.Round(Price + TransportCost + CalculatePackagingCost() + CalculateTaxAmount(Price) - CalculateTotalDiscount(), 2);
+            return Math.Round(Price + CalculateTransportCost() + CalculatePackagingCost() + CalculateTaxAmount(Price) - CalculateTotalDiscount(), 2);
         }
         public double CalculateTotalDiscount()
         {
@@ -47,6 +49,10 @@ namespace Price_Calculator_Kata
             if (this.DicountType == "1")
             {
                 double discount = Math.Round(CalculateUPCDiscountAmount(Price) + CalculateDiscountAmount(Price), 2);
+                if (cap == 0)
+                {
+                    return discount;
+                }
                 if (discount < cap)
                 {
                     return discount;
@@ -59,9 +65,15 @@ namespace Price_Calculator_Kata
             }
             else if (this.DicountType == "2")
             {
+               
+
                 double price = Price - CalculateDiscountAmount(Price);
                 double discount = Math.Round(CalculateUPCDiscountAmount(price) + CalculateDiscountAmount(Price), 2);
-                if (discount <cap)
+                if (cap == 0)
+                {
+                    return discount;
+                }
+                if (discount < cap)
                 {
                     return discount;
                 }
@@ -79,7 +91,15 @@ namespace Price_Calculator_Kata
 
         public double CalculatePackagingCost()
         {
-            return Math.Round(Price * PackagingCost / 100, 2);
+            if (PackagingType == "1")
+            {
+                return Math.Round(Price * PackagingCost / 100, 2);
+
+            }
+            else
+            {
+                return PackagingCost;
+            }
         }
         public double CalculateCap()
         {
@@ -91,6 +111,18 @@ namespace Price_Calculator_Kata
             else
             {
                 return Cap;
+            }
+        }
+        public double CalculateTransportCost()
+        {
+            if (TransportType == "1")
+            {
+                return Math.Round(Price * TransportCost / 100, 2);
+
+            }
+            else
+            {
+                return TransportCost;
             }
         }
 
